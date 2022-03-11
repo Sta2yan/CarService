@@ -173,13 +173,13 @@ namespace CarService
     class Car : IShowInfo
     {
         private Random _random = new Random();
-        private int maximumTypreBreaking = 5;
+        private int _maximumTypeBreaking = 5;
 
         public DetailType TypeBreaking { get; private set; }
 
         public Car()
         {
-            TypeBreaking = (DetailType)_random.Next(0, maximumTypreBreaking);
+            TypeBreaking = (DetailType)_random.Next(0, _maximumTypeBreaking);
         }
 
         public void ShowInfo()
