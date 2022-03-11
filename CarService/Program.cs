@@ -228,12 +228,13 @@ namespace CarService
         {
             int maximumPrice = 3000;
             int minimumPrice = 1000;
+            int price = _random.Next(minimumPrice, maximumPrice);
             int maximumDetail = 17;
             int minimumDetail = 7;
 
             for (int i = 0; i < _random.Next(minimumDetail, maximumDetail); i++)
             {
-                _details.Add(new Detail(Type, _random.Next(minimumPrice, maximumPrice)));
+                _details.Add(new Detail(Type, price));
             }
         }
     }
