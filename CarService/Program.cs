@@ -66,12 +66,12 @@ namespace CarService
         Glass
     }
 
-    interface IShowInfo
+    interface IShowable
     {
-        public void ShowInfo();
+        void ShowInfo();
     }
 
-    class CarService : IShowInfo
+    class CarService : IShowable 
     {
         private List<StackDetail> _stackDetails = new List<StackDetail>();
         private Random _random = new Random();
@@ -154,14 +154,15 @@ namespace CarService
             do
             {
                 index = Progam.GetNumber(Console.ReadLine()) - 1;
-            } while (index < -1 || index >= _stackDetails.Count);
+            } 
+            while (index < -1 || index >= _stackDetails.Count);
 
             return index;
         }
 
         private void SetDefaultListStackDetails()
         {
-            int maximumDetailType = 5;
+            int maximumDetailType = Enum.GetNames(typeof(DetailType)).Length;
 
             for (int i = 0; i < maximumDetailType; i++)
             {
@@ -170,10 +171,10 @@ namespace CarService
         }
     }
 
-    class Car : IShowInfo
+    class Car : IShowable 
     {
         private Random _random = new Random();
-        private int _maximumTypeBreaking = 5;
+        private int _maximumTypeBreaking = Enum.GetNames(typeof(DetailType)).Length;
 
         public DetailType TypeBreaking { get; private set; }
 
@@ -188,7 +189,7 @@ namespace CarService
         }
     }
 
-    class StackDetail : IShowInfo
+    class StackDetail : IShowable 
     {
         private Random _random = new Random();
         private List<Detail> _details = new List<Detail>();
@@ -239,7 +240,7 @@ namespace CarService
         }
     }
 
-    class Detail : IShowInfo
+    class Detail : IShowable 
     {
         public DetailType Type { get; private set; }
         public int Price { get; private set; }
